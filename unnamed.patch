@@ -1,0 +1,10 @@
+Index: ac.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/ac.py b/ac.py
+--- a/ac.py
++++ b/ac.py	(date 1754899081624)
+@@ -1,0 +1,1 @@
++

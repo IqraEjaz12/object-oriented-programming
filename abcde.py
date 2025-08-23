@@ -40,17 +40,16 @@ class BankAccount:
 # Usage
 account = BankAccount("John Doe", 1000)
 
-print(account.check_balance("1234"))     # Output: Current balance: $1000
-print(account.deposit(500, "1234"))      # Output: Deposited $500. New balance: $1500
-print(account.withdraw(200, "1234"))     # Output: Withdrew $200. New balance: $1300
-
-# These will work but are not recommended
-print(account.account_holder)            # Output: John Doe (public)
-print(account._account_number)           # Output: ACC123456 (protected)
+# print(account.check_balance("1234"))     # Output: Current balance: $1000
+# print(account.deposit(500, "1234"))      # Output: Deposited $500. New balance: $1500
+# print(account.withdraw(200, "1234"))     # Output: Withdrew $200. New balance: $1300
+#
+# # These will work but are not recommended
+# print(account.account_holder)            # Output: John Doe (public)
+# print(account._account_number)           # Output: ACC123456 (protected)
 
 # This won't work - private attribute
 # print(account.__balance)               # AttributeError
 
 
 arsl_account = BankAccount("Arslan")
-arsl_account._BankAccount__balance

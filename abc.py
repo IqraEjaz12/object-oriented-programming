@@ -114,69 +114,154 @@
 #
 
 # Parent class (Base class)
-class Animal:
-    def __init__(self, name, species):
-        self.name = name
-        self.species = species
-        self.is_alive = True
-
-    def eat(self, food):
-        return f"{self.name} is eating {food}"
-
-    def sleep(self):
-        return f"{self.name} is sleeping"
-
-    def make_sound(self):
-        return f"{self.name} makes a sound"
-
-
+# class Animal:
+#     def __init__(self, name, species):
+#         self.name = name
+#         self.species = species
+#         self.is_alive = True
 #
-# Child class inherits from Animal
-class Dog(Animal):
-    def __init__(self, name, breed):
-        super().__init__(name, "Canine")  # Call parent constructor
-        self.breed = breed
-        self.loyalty = "High"
+#     def eat(self, food):
+#         return f"{self.name} is eating {food}"
+#
+#     def sleep(self):
+#         return f"{self.name} is sleeping"
+#
+#     def make_sound(self):
+#         return f"{self.name} makes a sound"
+#
+#
+# #
+# # Child class inherits from Animal
+# class Dog(Animal):
+#     def __init__(self, name, breed):
+#         super().__init__(name, "Canine")  # Call parent constructor
+#         self.breed = breed
+#         self.loyalty = "High"
+#
+#     # Override parent method
+#     def make_sound(self):
+#         return f"{self.name} barks: Woof!"
+#
+#     # New method specific to Dog
+#     def fetch(self, item):
+#         return f"{self.name} fetches the {item}"
+#
+# # Another child class
+# class Cat(Animal):
+#     def __init__(self, name, indoor=True):
+#         super().__init__(name, "Feline")
+#         self.indoor = indoor
+#         self.independence = "High"
+#
+#     # Override parent method
+#     def make_sound(self):
+#         return f"{self.name} meows: Meow!"
+#
+#     # New method specific to Cat
+#     def climb(self, object_name):
+#         return f"{self.name} climbs the {object_name}"
+#
+# # Usage
+# dog = Dog("Buddy", "Golden Retriever")
+# cat = Cat("Whiskers", True)
+#
+# # Inherited methods
+# print(dog.eat("kibble"))        # Output: Buddy is eating kibble
+# print(cat.sleep())              # Output: Whiskers is sleeping
+#
+# # Overridden methods
+# print(dog.make_sound())         # Output: Buddy barks: Woof!
+# print(cat.make_sound())         # Output: Whiskers meows: Meow!
+#
+# # Specific methods
+# print(dog.fetch("ball"))        # Output: Buddy fetches the ball
+# print(cat.climb("tree"))        # Output: Whiskers climbs the tree
+#
+# # Inherited attributes
+# print(dog.species)              # Output: Canine
+# print(cat.is_alive)             # Output: True
 
-    # Override parent method
-    def make_sound(self):
-        return f"{self.name} barks: Woof!"
 
-    # New method specific to Dog
-    def fetch(self, item):
-        return f"{self.name} fetches the {item}"
 
-# Another child class
-class Cat(Animal):
-    def __init__(self, name, indoor=True):
-        super().__init__(name, "Feline")
-        self.indoor = indoor
-        self.independence = "High"
 
-    # Override parent method
-    def make_sound(self):
-        return f"{self.name} meows: Meow!"
 
-    # New method specific to Cat
-    def climb(self, object_name):
-        return f"{self.name} climbs the {object_name}"
+class Shape:
+    def __init__(self, name):
+        self.name = name
 
-# Usage
-dog = Dog("Buddy", "Golden Retriever")
-cat = Cat("Whiskers", True)
+    def area(self):
+        pass  # This will be overridden by child classes
 
-# Inherited methods
-print(dog.eat("kibble"))        # Output: Buddy is eating kibble
-print(cat.sleep())              # Output: Whiskers is sleeping
+    def perimeter(self):
+        pass  # This will be overridden by child classes
 
-# Overridden methods
-print(dog.make_sound())         # Output: Buddy barks: Woof!
-print(cat.make_sound())         # Output: Whiskers meows: Meow!
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        super().__init__("Rectangle")
+        self.width = width
+        self.height = height
 
-# Specific methods
-print(dog.fetch("ball"))        # Output: Buddy fetches the ball
-print(cat.climb("tree"))        # Output: Whiskers climbs the tree
+    def area(self):
+        return self.width * self.height
 
-# Inherited attributes
-print(dog.species)              # Output: Canine
-print(cat.is_alive)             # Output: True
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+class Circle(Shape):
+    def __init__(self, radius):
+        super().__init__("Circle")
+        self.radius = radius
+
+    def area(self):
+        return 3.14159 * self.radius ** 2
+
+    def perimeter(self):
+        return 2 * 3.14159 * self.radius
+
+class Triangle(Shape):
+    def __init__(self, base, height, side1, side2):
+        super().__init__("Triangle")
+        self.base = base
+        self.height = height
+        self.side1 = side1
+        self.side2 = side2
+
+    def area(self):
+        return 0.5 * self.base * self.height
+
+    def perimeter(self):
+        return self.base + self.side1 + self.side2
+
+# Polymorphism in action
+def print_shape_info(shape):
+    """This function works with any shape object"""
+    print(f"Shape: {shape.name}")
+    print(f"Area: {shape.area():.2f}")
+    print(f"Perimeter: {shape.perimeter():.2f}")
+    print("-" * 20)
+
+# Create different shape objects
+rectangle = Rectangle(5, 3)
+circle = Circle(4)
+triangle = Triangle(6, 4, 5, 7)
+
+# List of different shapes
+shapes = [rectangle, circle, triangle]
+
+# Use polymorphism - same function works for all shapes
+for shape in shapes:
+    print_shape_info(shape)
+
+# Output:
+# Shape: Rectangle
+# Area: 15.00
+# Perimeter: 16.00
+# --------------------
+# Shape: Circle
+# Area: 50.27
+# Perimeter: 25.13
+# --------------------
+# Shape: Triangle
+# Area: 12.00
+# Perimeter: 18.00
+# --------------------

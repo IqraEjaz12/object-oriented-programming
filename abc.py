@@ -185,83 +185,98 @@
 
 
 
-class Shape:
-    def __init__(self, name):
-        self.name = name
+# class Shape:
+#     def __init__(self, name):
+#         self.name = name
+#
+#     def area(self):
+#         pass  # This will be overridden by child classes
+#
+#     def perimeter(self):
+#         pass  # This will be overridden by child classes
+#
+# class Rectangle(Shape):
+#     def __init__(self, width, height):
+#         super().__init__("Rectangle")
+#         self.width = width
+#         self.height = height
+#
+#     def area(self):
+#         return self.width * self.height
+#
+#     def perimeter(self):
+#         return 2 * (self.width + self.height)
+#
+# class Circle(Shape):
+#     def __init__(self, radius):
+#         super().__init__("Circle")
+#         self.radius = radius
+#
+#     def area(self):
+#         return 3.14159 * self.radius ** 2
+#
+#     def perimeter(self):
+#         return 2 * 3.14159 * self.radius
+#
+# class Triangle(Shape):
+#     def __init__(self, base, height, side1, side2):
+#         super().__init__("Triangle")
+#         self.base = base
+#         self.height = height
+#         self.side1 = side1
+#         self.side2 = side2
+#
+#     def area(self):
+#         return 0.5 * self.base * self.height
+#
+#     def perimeter(self):
+#         return self.base + self.side1 + self.side2
+#
+# # Polymorphism in action
+# def print_shape_info(shape):
+#     """This function works with any shape object"""
+#     print(f"Shape: {shape.name}")
+#     print(f"Area: {shape.area():.2f}")
+#     print(f"Perimeter: {shape.perimeter():.2f}")
+#     print("-" * 20)
+#
+# # Create different shape objects
+# rectangle = Rectangle(5, 3)
+# circle = Circle(4)
+# triangle = Triangle(6, 4, 5, 7)
+#
+# # List of different shapes
+# shapes = [rectangle, circle, triangle]
+#
+# # Use polymorphism - same function works for all shapes
+# for shape in shapes:
+#     print_shape_info(shape)
+#
+# # Output:
+# # Shape: Rectangle
+# # Area: 15.00
+# # Perimeter: 16.00
+# # --------------------
+# # Shape: Circle
+# # Area: 50.27
+# # Perimeter: 25.13
+# # --------------------
+# # Shape: Triangle
+# # Area: 12.00
+# # Perimeter: 18.00
+# # --------------------
 
-    def area(self):
-        pass  # This will be overridden by child classes
 
-    def perimeter(self):
-        pass  # This will be overridden by child classes
+class MathOperations:
+    @staticmethod
+    def add(a, b):
+        return a + b
 
-class Rectangle(Shape):
-    def __init__(self, width, height):
-        super().__init__("Rectangle")
-        self.width = width
-        self.height = height
+    @staticmethod
+    def multiply(a, b):
+        return a * b
 
-    def area(self):
-        return self.width * self.height
 
-    def perimeter(self):
-        return 2 * (self.width + self.height)
-
-class Circle(Shape):
-    def __init__(self, radius):
-        super().__init__("Circle")
-        self.radius = radius
-
-    def area(self):
-        return 3.14159 * self.radius ** 2
-
-    def perimeter(self):
-        return 2 * 3.14159 * self.radius
-
-class Triangle(Shape):
-    def __init__(self, base, height, side1, side2):
-        super().__init__("Triangle")
-        self.base = base
-        self.height = height
-        self.side1 = side1
-        self.side2 = side2
-
-    def area(self):
-        return 0.5 * self.base * self.height
-
-    def perimeter(self):
-        return self.base + self.side1 + self.side2
-
-# Polymorphism in action
-def print_shape_info(shape):
-    """This function works with any shape object"""
-    print(f"Shape: {shape.name}")
-    print(f"Area: {shape.area():.2f}")
-    print(f"Perimeter: {shape.perimeter():.2f}")
-    print("-" * 20)
-
-# Create different shape objects
-rectangle = Rectangle(5, 3)
-circle = Circle(4)
-triangle = Triangle(6, 4, 5, 7)
-
-# List of different shapes
-shapes = [rectangle, circle, triangle]
-
-# Use polymorphism - same function works for all shapes
-for shape in shapes:
-    print_shape_info(shape)
-
-# Output:
-# Shape: Rectangle
-# Area: 15.00
-# Perimeter: 16.00
-# --------------------
-# Shape: Circle
-# Area: 50.27
-# Perimeter: 25.13
-# --------------------
-# Shape: Triangle
-# Area: 12.00
-# Perimeter: 18.00
-# --------------------
+# Using static methods
+print(MathOperations.add(5, 3))  # Output: 8
+print(MathOperations.multiply(4, 2))  # Output: 8

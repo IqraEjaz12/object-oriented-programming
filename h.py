@@ -267,16 +267,101 @@
 # # --------------------
 
 
-class MathOperations:
-    @staticmethod
-    def add(a, b):
-        return a + b
+# class MathOperations:
+#     @staticmethod
+#     def add(a, b):
+#         return a + b
+#
+#     @staticmethod
+#     def multiply(a, b):
+#         return a * b
+#
+#
+# # Using static methods
+# print(MathOperations.add(5, 3))  # Output: 8
+# print(MathOperations.multiply(4, 2))  # Output: 8
 
-    @staticmethod
-    def multiply(a, b):
-        return a * b
 
 
-# Using static methods
-print(MathOperations.add(5, 3))  # Output: 8
-print(MathOperations.multiply(4, 2))  # Output: 8
+# class Animal:
+#     def __init__(self,name,species):
+#         self.name=name
+#         self.species=species
+#         self.alive="true"
+#     def eat(self,food):
+#         return f"{self.name} is eating {food}"
+#     def seep(self):
+#         return f"{self.name} is sleeping"
+#     def make_sound(self):
+#         return f"{self.name} is making sound"
+# class Dog(Animal):
+#     def __init__(self,name,breed):
+#         super(). __init__(name,"canine")
+#         self.breed=breed
+#         self.loyality="high"
+#     def make_sound(self):
+#         return f"{self.name} is making sound"
+#     def fetch(self,item):
+#         return f"{self.name} is fetching{item}"
+# class Cat(Animal):
+#     def __init__(self,name,indoor="true"):
+#         super(). __init__(name,"Feline")
+#     def make_sound(self):
+#         return f"{self.name} is making sound"
+#     def climb(self,item_name):
+#         return f"{self.name} is climbing {item_name}"
+# dog=Dog("tomy","golden retrival")
+# cat=Cat("catoo","true")
+# print(dog.make_sound())
+# print(cat.make_sound())
+# print(dog.eat("kibble"))
+
+class Shape:
+    def __init__(self,name):
+        self.name=name
+    def area(self):
+        pass
+    def perimeter(self):
+        pass
+class Rectangle(Shape):
+    def __init__(self,width,height):
+        super(). __init__("Rectangle")
+        self.width=width
+        self.height=height
+    def area(self):
+        return self.width*self.height
+    def perimeter(self):
+        return 2*(self.width+self.height)
+class Circle(Shape):
+    def __init__(self,radius):
+        super(). __init__("Circle")
+        self.radius=radius
+    def area(self):
+        return 3.14*self.radius**2
+    def perimeter(self):
+        return 2*3.14*self.radius
+class Triangle(Shape):
+    def __init__(self,base,height,side1,side2):
+        super(). __init__("Triangle")
+        self.base=base
+        self.height=height
+        self.side1=side1
+        self.side2=side2
+    def area(self):
+        return 0.5*self.base*self.height
+    def perimeter(self):
+        return self.base+self.side1+self.side2
+def print_Shape_info(shape):
+    print(f"Shape:{shape.name}" )
+    print(f"Area:{shape.area()}")
+    print(f"Perimeter{shape.perimeter()}")
+
+
+rectangle=Rectangle(4,5)
+triangle=Triangle(5,7,9,4)
+circle=Circle(6)
+shapes=[rectangle,triangle,circle]
+for shape in shapes:
+    print_Shape_info(shape)
+
+

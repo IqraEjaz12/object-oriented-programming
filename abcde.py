@@ -58,39 +58,140 @@
 
 
 
-class Duck:
-    def make_sound(self):
-        return "Quack!"
+# class Duck:
+#     def make_sound(self):
+#         return "Quack!"
+#
+#     def swim(self):
+#         return "Duck swims in water"
+#
+# class Robot:
+#     def make_sound(self):
+#         return "Beep boop!"
+#
+#     def swim(self):
+#         return "Robot swims with propellers"
+#
+# class Dog:
+#     def make_sound(self):
+#         return "Woof!"
+#
+#     def swim(self):
+#         return "Dog does doggy paddle"
+#
+# # Function that works with any object that has make_sound and swim methods
+# def animal_actions(creature):
+#     print(f"Sound: {creature.make_sound()}")
+#     print(f"Swimming: {creature.swim()}")
+#     print()
+#
+# # All these work even though they're different types
+# duck = Duck()
+# robot = Robot()
+# dog = Dog()
+#
+# creatures = [duck, robot, dog]
+#
+# for creature in creatures:
+#     animal_actions(creature)
 
-    def swim(self):
-        return "Duck swims in water"
 
-class Robot:
-    def make_sound(self):
-        return "Beep boop!"
 
-    def swim(self):
-        return "Robot swims with propellers"
+from abc import ABC, abstractmethod
 
-class Dog:
-    def make_sound(self):
-        return "Woof!"
+# Abstract base class
+class PaymentProcessor(ABC):
+    def __init__(self, merchant_name):
+        self.merchant_name = merchant_name
 
-    def swim(self):
-        return "Dog does doggy paddle"
+    # Abstract method - must be implemented by child classes
+    @abstractmethod
+    def process_payment(self, amount):
+        pass
 
-# Function that works with any object that has make_sound and swim methods
-def animal_actions(creature):
-    print(f"Sound: {creature.make_sound()}")
-    print(f"Swimming: {creature.swim()}")
+    # Abstract method
+    @abstractmethod
+    def refund_payment(self, transaction_id, amount):
+        pass
+
+    # Concrete method - can be used by all child classes
+    def send_receipt(self, email, amount):
+        return f"Receipt sent to {email} for ${amount}"
+
+# Concrete implementations
+class CreditCardProcessor(PaymentProcessor):
+    def __init__(self, merchant_name):
+        super().__init__(merchant_name)
+        self.fee_rate = 0.03  # 3% fee
+
+    def process_payment(self, amount):
+        fee = amount * self.fee_rate
+        net_amount = amount - fee
+        return {
+            "status": "success",
+            "amount": amount,
+            "fee": fee,
+            "net_amount": net_amount,
+            "method": "Credit Card"
+        }
+
+    def refund_payment(self, transaction_id, amount):
+        return f"Credit card refund of ${amount} processed for transaction {transaction_id}"
+
+class PayPalProcessor(PaymentProcessor):
+    def __init__(self, merchant_name):
+        super().__init__(merchant_name)
+        self.fee_rate = 0.025  # 2.5% fee
+
+    def process_payment(self, amount):
+        fee = amount * self.fee_rate
+        net_amount = amount - fee
+        return {
+            "status": "success",
+            "amount": amount,
+            "fee": fee,
+            "net_amount": net_amount,
+            "method": "PayPal"
+        }
+
+    def refund_payment(self, transaction_id, amount):
+        return f"PayPal refund of ${amount} processed for transaction {transaction_id}"
+
+class BankTransferProcessor(PaymentProcessor):
+    def __init__(self, merchant_name):
+        super().__init__(merchant_name)
+        self.fee_rate = 0.01  # 1% fee
+
+    def process_payment(self, amount):
+        fee = amount * self.fee_rate
+        net_amount = amount - fee
+        return {
+            "status": "success",
+            "amount": amount,
+            "fee": fee,
+            "net_amount": net_amount,
+            "method": "Bank Transfer"
+        }
+
+    def refund_payment(self, transaction_id, amount):
+        return f"Bank transfer refund of ${amount} processed for transaction {transaction_id}"
+
+# Usage - client doesn't need to know implementation details
+def handle_payment(processor, amount):
+    result = processor.process_payment(amount)
+    print(f"Payment Method: {result['method']}")
+    print(f"Amount: ${result['amount']}")
+    print(f"Fee: ${result['fee']:.2f}")
+    print(f"Net Amount: ${result['net_amount']:.2f}")
     print()
 
-# All these work even though they're different types
-duck = Duck()
-robot = Robot()
-dog = Dog()
+# Create different processors
+credit_processor = CreditCardProcessor("My Store")
+paypal_processor = PayPalProcessor("My Store")
+bank_processor = BankTransferProcessor("My Store")
 
-creatures = [duck, robot, dog]
+processors = [credit_processor, paypal_processor, bank_processor]
 
-for creature in creatures:
-    animal_actions(creature)
+# Same interface, different implementations
+for processor in processors:
+    handle_payment(processor, 100)

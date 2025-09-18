@@ -195,3 +195,72 @@ processors = [credit_processor, paypal_processor, bank_processor]
 # Same interface, different implementations
 for processor in processors:
     handle_payment(processor, 100)
+
+    from abc import ABC, abstractmethod
+
+
+    # --------------------
+    # Abstraction
+    # --------------------
+    class Employee(ABC):
+        def __init__(self, name, salary):
+            self._name = name  # Encapsulation (protected attribute)
+            self._salary = salary
+
+        @abstractmethod
+        def get_role(self):
+            pass
+
+        def get_details(self):
+            return f"Name: {self._name}, Salary: {self._salary}"
+
+
+    # --------------------
+    # Inheritance
+    # --------------------
+    class Developer(Employee):
+        def __init__(self, name, salary, programming_language):
+            super().__init__(name, salary)
+            self.programming_language = programming_language
+
+        def get_role(self):
+            return "Software Developer"
+
+        def write_code(self):
+            return f"{self._name} is writing code in {self.programming_language}"
+
+
+    class Manager(Employee):
+        def __init__(self, name, salary, team_size):
+            super().__init__(name, salary)
+            self.team_size = team_size
+
+        def get_role(self):
+            return "Project Manager"
+
+        def manage_team(self):
+            return f"{self._name} is managing a team of {self.team_size} members"
+
+
+    # --------------------
+    # Polymorphism
+    # --------------------
+    def show_employee_work(employee):
+        print(f"{employee.get_role()} -> {employee.get_details()}")
+        if isinstance(employee, Developer):
+            print(employee.write_code())
+        elif isinstance(employee, Manager):
+            print(employee.manage_team())
+
+
+    # --------------------
+    # Main Program
+    # --------------------
+    if __name__ == "__main__":
+        dev = Developer("Iqra Ejaz", 80000, "Python")
+        mgr = Manager("Ali Khan", 120000, 5)
+
+        employees = [dev, mgr]
+
+        for emp in employees:
+            show_employee_work(emp)

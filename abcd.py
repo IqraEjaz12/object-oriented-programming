@@ -130,3 +130,46 @@ print("v1 =", v1)
 print("v2 =", v2)
 print("v1 + v2 =", v1 + v2)
 print("v1 * 3 =", v1 * 3)
+
+
+
+class Student:
+    def __init__(self, name, age):
+        # Private attributes (encapsulated)
+        self.__name = name
+        self.__age = age
+
+    # Getter method to access private name
+    def get_name(self):
+        return self.__name
+
+    # Setter method to modify private name
+    def set_name(self, name):
+        self.__name = name
+
+    # Getter method to access private age
+    def get_age(self):
+        return self.__age
+
+    # Setter method to modify private age
+    def set_age(self, age):
+        if age > 0:
+            self.__age = age
+        else:
+            print("Age cannot be negative or zero.")
+
+# Creating object
+student = Student("Iqra", 20)
+
+# Accessing data using getter methods
+print("Name:", student.get_name())
+print("Age:", student.get_age())
+
+# Modifying data using setter methods
+student.set_name("Ayesha")
+student.set_age(21)
+
+print("\nAfter updating:")
+print("Name:", student.get_name())
+print("Age:", student.get_age())
+

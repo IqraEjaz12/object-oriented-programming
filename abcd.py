@@ -173,3 +173,30 @@ print("\nAfter updating:")
 print("Name:", student.get_name())
 print("Age:", student.get_age())
 
+
+
+# Class representing a Python Developer
+class PythonDeveloper:
+    def __init__(self, name, experience, skills):
+        self.name = name
+        self.experience = experience
+        self.skills = skills
+
+    def introduce(self):
+        print(f"Hi! I'm {self.name}, a passionate Python Developer.")
+        print(f"I have {self.experience} years of experience in Python development.")
+
+    def show_skills(self):
+        print("My main skills are:")
+        for skill in self.skills:
+            print(f"- {skill}")
+
+    def work(self, project):
+        print(f"{self.name} is currently working on a project: {project}")
+
+# Creating an object of the class
+iqra = PythonDeveloper(
+    name="Iqra Ejaz",
+    experience=4,
+    skills=
+
